@@ -49,9 +49,7 @@ export default function Home({ onNavigateToCatalog }: { onNavigateToCatalog: () 
     }
   ];
 
-  if (currentView === 'catalog') {
-    return <CatalogView onBack={() => setCurrentView('home')} cart={cart} setCart={setCart} />;
-  }
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -280,24 +278,3 @@ export default function Home({ onNavigateToCatalog }: { onNavigateToCatalog: () 
   );
 }
 
-// Catalog Component (placeholder for now)
-function CatalogView({ onBack, cart, setCart }: { 
-  onBack: () => void, 
-  cart: CartItem[], 
-  setCart: React.Dispatch<React.SetStateAction<CartItem[]>> 
-}) {
-  return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-4xl font-bold mb-8">Каталог товаров</h1>
-        <p className="text-muted-foreground mb-8">
-          Полный каталог будет здесь. Сейчас это заглушка.
-        </p>
-        <Button onClick={onBack}>
-          <Icon name="ArrowLeft" size={16} className="mr-2" />
-          Вернуться на главную
-        </Button>
-      </div>
-    </div>
-  );
-}
