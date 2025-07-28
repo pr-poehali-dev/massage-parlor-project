@@ -8,6 +8,7 @@ import { Slider } from '@/components/ui/slider';
 import { Separator } from '@/components/ui/separator';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
+import Home from './Home';
 
 interface Product {
   id: number;
@@ -36,12 +37,17 @@ const categories = ['Все', 'Электроника', 'Аксессуары', 
 const brands = ['Все', 'TechBrand', 'LuxWatch', 'DesignHome', 'LeatherCraft'];
 
 export default function Index() {
+  const [currentView, setCurrentView] = useState<'home' | 'catalog'>('home');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Все');
   const [selectedBrand, setSelectedBrand] = useState('Все');
   const [priceRange, setPriceRange] = useState([0, 30000]);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  if (currentView === 'home') {
+    return <Home onNavigateToCatalog={() => setCurrentView('catalog')} />;
+  }
 
   const filteredProducts = useMemo(() => {
     return sampleProducts.filter(product => {
